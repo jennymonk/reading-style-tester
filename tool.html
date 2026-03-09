@@ -349,8 +349,8 @@ button:hover{
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="tool.html">Tool</a>
-      <a href="index.html#about">About</a>
       <a href="viewer.html">Reading View</a>
+      <a href="index.html#about">About</a>
       <a href="index.html#help">Further help</a>
     </div>
   </nav>
@@ -444,6 +444,7 @@ button:hover{
     <div class="actions">
       <button class="primary-large" onclick="generateProfile()">Generate My Reading Profile</button>
       <button class="secondary" onclick="copyProfile()">Copy profile text</button>
+      <button class="secondary" onclick="openReadingView()">Open in Reading View</button>
     </div>
 
     <div id="profileBox" class="profileBox"></div>
@@ -486,35 +487,57 @@ function updateSampleText() {
   text.textContent = sampleTexts[sampleText.value];
 }
 
+function saveToolSettings() {
+  const settings = {
+    sampleText: sampleText.value,
+    customText: "",
+    font: fontSelect.value,
+    fontSize: parseInt(fontSize.value, 10),
+    lineSpacing: parseFloat(lineSpacing.value),
+    lineWidth: parseInt(lineWidth.value, 10),
+    textColor: textColor.value,
+    bgColor: bgColor.value
+  };
+
+  localStorage.setItem("readingComfortToolSettings", JSON.stringify(settings));
+}
+
 sampleText.onchange = function(){
   updateSampleText();
+  saveToolSettings();
 };
 
 fontSelect.onchange = function(){
   text.style.fontFamily = this.value;
+  saveToolSettings();
 };
 
 fontSize.oninput = function(){
   text.style.fontSize = this.value + "px";
   fontSizeValue.textContent = this.value + "px";
+  saveToolSettings();
 };
 
 lineSpacing.oninput = function(){
   text.style.lineHeight = this.value;
   lineSpacingValue.textContent = this.value;
+  saveToolSettings();
 };
 
 lineWidth.oninput = function(){
   text.style.width = this.value + "px";
   lineWidthValue.textContent = this.value + "px";
+  saveToolSettings();
 };
 
 textColor.oninput = function(){
   text.style.color = this.value;
+  saveToolSettings();
 };
 
 bgColor.oninput = function(){
   text.style.backgroundColor = this.value;
+  saveToolSettings();
 };
 
 function applyPreset(font, size, line, color, bg, width){
@@ -535,6 +558,8 @@ function applyPreset(font, size, line, color, bg, width){
   fontSizeValue.textContent = size + "px";
   lineSpacingValue.textContent = line;
   lineWidthValue.textContent = width + "px";
+
+  saveToolSettings();
 }
 
 function getProfileText(){
@@ -598,6 +623,11 @@ async function copyProfile(){
   } catch (err) {
     alert("Copy did not work in this browser. Please generate the profile and copy it manually.");
   }
+}
+
+function openReadingView() {
+  saveToolSettings();
+  window.location.href = "viewer.html";
 }
 
 updateSampleText();

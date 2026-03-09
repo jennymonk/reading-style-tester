@@ -31,6 +31,24 @@ body{
   color:var(--text);
   font-size:20px;
   line-height:1.8;
+  position:relative;
+  min-height:100vh;
+}
+
+#screenOverlay{
+  position:fixed;
+  inset:0;
+  background:#fff8dc;
+  opacity:0;
+  pointer-events:none;
+  z-index:1;
+}
+
+#pageFilterWrap{
+  position:relative;
+  z-index:2;
+  min-height:100vh;
+  filter:brightness(100%) contrast(100%);
 }
 
 .site-header{
@@ -305,112 +323,136 @@ button:hover{
 </head>
 <body>
 
-<header class="site-header">
-  <nav class="nav">
-    <a href="index.html" class="brand">Reading Comfort Lab</a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="tool.html">Tool</a>
-      <a href="viewer.html">Reading View</a>
-      <a href="index.html#help">Further help</a>
-    </div>
-  </nav>
-</header>
+<div id="screenOverlay"></div>
 
-<div class="page-wrap">
+<div id="pageFilterWrap">
+  <header class="site-header">
+    <nav class="nav">
+      <a href="index.html" class="brand">Reading Comfort Lab</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="tool.html">Tool</a>
+        <a href="viewer.html">Reading View</a>
+        <a href="index.html#help">Further help</a>
+      </div>
+    </nav>
+  </header>
 
-  <section class="intro-card">
-    <h1>Full Page Reading View</h1>
-    <p>This page lets you view your choices in a more realistic full-page format, similar to how text might feel in a document, website, or reading mode.</p>
-  </section>
+  <div class="page-wrap">
 
-  <section class="controls-panel">
-    <div class="controls-grid">
+    <section class="intro-card">
+      <h1>Full Page Reading View</h1>
+      <p>This page lets you view your choices in a more realistic full-page format, similar to how text might feel in a document, website, or reading mode. You can also try a whole-screen overlay, as well as brightness and contrast adjustments.</p>
+    </section>
 
-      <div class="control-group">
-        <label for="sampleText">Text sample</label>
-        <select id="sampleText">
-          <option value="general">General reading sample</option>
-          <option value="child">Children’s story</option>
-          <option value="teen">Teen reading sample</option>
-          <option value="adult">Adult information sample</option>
-          <option value="custom">My own text</option>
-        </select>
+    <section class="controls-panel">
+      <div class="controls-grid">
+
+        <div class="control-group">
+          <label for="sampleText">Text sample</label>
+          <select id="sampleText">
+            <option value="general">General reading sample</option>
+            <option value="child">Children’s story</option>
+            <option value="teen">Teen reading sample</option>
+            <option value="adult">Adult information sample</option>
+            <option value="custom">My own text</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="fontSelect">Font</label>
+          <select id="fontSelect">
+            <option>Arial</option>
+            <option>Verdana</option>
+            <option>Tahoma</option>
+            <option>Trebuchet MS</option>
+            <option>Calibri</option>
+            <option>Segoe UI</option>
+            <option>Bahnschrift</option>
+            <option>Candara</option>
+            <option>Georgia</option>
+            <option>Cambria</option>
+            <option>Constantia</option>
+            <option>Palatino Linotype</option>
+            <option>Times New Roman</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="fontSize">Font size <span class="control-value" id="fontSizeValue">20px</span></label>
+          <input type="range" id="fontSize" min="16" max="36" value="20">
+        </div>
+
+        <div class="control-group">
+          <label for="lineSpacing">Line spacing <span class="control-value" id="lineSpacingValue">1.6</span></label>
+          <input type="range" id="lineSpacing" min="1.2" max="2" step="0.1" value="1.6">
+        </div>
+
+        <div class="control-group">
+          <label for="pageWidth">Page width <span class="control-value" id="pageWidthValue">100%</span></label>
+          <input type="range" id="pageWidth" min="60" max="100" step="5" value="100">
+        </div>
+
+        <div class="control-group">
+          <label for="textColor">Text colour</label>
+          <input type="color" id="textColor" value="#333333">
+        </div>
+
+        <div class="control-group">
+          <label for="bgColor">Reading page colour</label>
+          <input type="color" id="bgColor" value="#fff8dc">
+        </div>
+
+        <div class="control-group">
+          <label for="overlayColor">Whole-screen overlay colour</label>
+          <input type="color" id="overlayColor" value="#fff8dc">
+        </div>
+
+        <div class="control-group">
+          <label for="overlayStrength">Overlay strength <span class="control-value" id="overlayStrengthValue">0%</span></label>
+          <input type="range" id="overlayStrength" min="0" max="100" value="0">
+        </div>
+
+        <div class="control-group">
+          <label for="brightness">Screen brightness <span class="control-value" id="brightnessValue">100%</span></label>
+          <input type="range" id="brightness" min="60" max="140" value="100">
+        </div>
+
+        <div class="control-group">
+          <label for="contrast">Screen contrast <span class="control-value" id="contrastValue">100%</span></label>
+          <input type="range" id="contrast" min="60" max="140" value="100">
+        </div>
+
+      </div>
+    </section>
+
+    <section class="custom-text-card">
+      <h2>Use your own text</h2>
+      <p>Paste text here if you want to see how your own writing, school work, email, or reading material looks with different settings.</p>
+      <textarea id="customText" placeholder="Paste your own text here..."></textarea>
+      <div class="actions">
+        <button onclick="applyCustomText()">Use my text</button>
+        <button class="secondary" onclick="resetSample()">Go back to sample text</button>
+      </div>
+    </section>
+
+    <section class="viewer-shell">
+      <div class="viewer-toolbar">
+        <h2>Reading View</h2>
+        <div class="viewer-note">A larger, document-style view for trying out your settings</div>
       </div>
 
-      <div class="control-group">
-        <label for="fontSelect">Font</label>
-        <select id="fontSelect">
-          <option>Arial</option>
-          <option>Verdana</option>
-          <option>Tahoma</option>
-          <option>Trebuchet MS</option>
-          <option>Calibri</option>
-          <option>Segoe UI</option>
-          <option>Bahnschrift</option>
-          <option>Candara</option>
-          <option>Georgia</option>
-          <option>Cambria</option>
-          <option>Constantia</option>
-          <option>Palatino Linotype</option>
-          <option>Times New Roman</option>
-        </select>
+      <div id="readingPage">
+        Reading is a highly individual experience. The way text is presented can influence how comfortable it feels to read for extended periods. Some readers prefer wider spacing between lines, while others find certain fonts easier to follow. Background colour and contrast can also affect visual comfort. This page is designed to help you view text in a more realistic, full-page format so you can judge how it feels over time.
       </div>
+    </section>
 
-      <div class="control-group">
-        <label for="fontSize">Font size <span class="control-value" id="fontSizeValue">20px</span></label>
-        <input type="range" id="fontSize" min="16" max="36" value="20">
-      </div>
+  </div>
 
-      <div class="control-group">
-        <label for="lineSpacing">Line spacing <span class="control-value" id="lineSpacingValue">1.6</span></label>
-        <input type="range" id="lineSpacing" min="1.2" max="2" step="0.1" value="1.6">
-      </div>
-
-      <div class="control-group">
-        <label for="pageWidth">Page width <span class="control-value" id="pageWidthValue">100%</span></label>
-        <input type="range" id="pageWidth" min="60" max="100" step="5" value="100">
-      </div>
-
-      <div class="control-group">
-        <label for="textColor">Text colour</label>
-        <input type="color" id="textColor" value="#333333">
-      </div>
-
-      <div class="control-group">
-        <label for="bgColor">Background / overlay colour</label>
-        <input type="color" id="bgColor" value="#fff8dc">
-      </div>
-
-    </div>
-  </section>
-
-  <section class="custom-text-card">
-    <h2>Use your own text</h2>
-    <p>Paste text here if you want to see how your own writing, school work, email, or reading material looks with different settings.</p>
-    <textarea id="customText" placeholder="Paste your own text here..."></textarea>
-    <div class="actions">
-      <button onclick="applyCustomText()">Use my text</button>
-      <button class="secondary" onclick="resetSample()">Go back to sample text</button>
-    </div>
-  </section>
-
-  <section class="viewer-shell">
-    <div class="viewer-toolbar">
-      <h2>Reading View</h2>
-      <div class="viewer-note">A larger, document-style view for trying out your settings</div>
-    </div>
-
-    <div id="readingPage">
-      Reading is a highly individual experience. The way text is presented can influence how comfortable it feels to read for extended periods. Some readers prefer wider spacing between lines, while others find certain fonts easier to follow. Background colour and contrast can also affect visual comfort. This page is designed to help you view text in a more realistic, full-page format so you can judge how it feels over time.
-    </div>
-  </section>
-
+  <footer class="site-footer">
+    Reading Comfort Lab was created to help people explore their own reading preferences in a simple, practical way.
+  </footer>
 </div>
-
-<footer class="site-footer">
-  Reading Comfort Lab was created to help people explore their own reading preferences in a simple, practical way.
-</footer>
 
 <script>
 const readingPage = document.getElementById("readingPage");
@@ -421,11 +463,20 @@ const lineSpacing = document.getElementById("lineSpacing");
 const pageWidth = document.getElementById("pageWidth");
 const textColor = document.getElementById("textColor");
 const bgColor = document.getElementById("bgColor");
+const overlayColor = document.getElementById("overlayColor");
+const overlayStrength = document.getElementById("overlayStrength");
+const brightness = document.getElementById("brightness");
+const contrast = document.getElementById("contrast");
 const customText = document.getElementById("customText");
+const screenOverlay = document.getElementById("screenOverlay");
+const pageFilterWrap = document.getElementById("pageFilterWrap");
 
 const fontSizeValue = document.getElementById("fontSizeValue");
 const lineSpacingValue = document.getElementById("lineSpacingValue");
 const pageWidthValue = document.getElementById("pageWidthValue");
+const overlayStrengthValue = document.getElementById("overlayStrengthValue");
+const brightnessValue = document.getElementById("brightnessValue");
+const contrastValue = document.getElementById("contrastValue");
 
 const sampleTexts = {
   general: "Reading is a highly individual experience. The way text is presented can influence how comfortable it feels to read for extended periods. Some readers prefer wider spacing between lines, while others find certain fonts easier to follow. Background colour and contrast can also affect visual comfort. This page is designed to help you view text in a more realistic, full-page format so you can judge how it feels over time.",
@@ -450,6 +501,18 @@ function applyCustomText() {
 function resetSample() {
   sampleText.value = "general";
   updateSampleText();
+}
+
+function updateFilters() {
+  pageFilterWrap.style.filter = `brightness(${brightness.value}%) contrast(${contrast.value}%)`;
+  brightnessValue.textContent = brightness.value + "%";
+  contrastValue.textContent = contrast.value + "%";
+}
+
+function updateOverlay() {
+  screenOverlay.style.backgroundColor = overlayColor.value;
+  screenOverlay.style.opacity = (overlayStrength.value / 100).toString();
+  overlayStrengthValue.textContent = overlayStrength.value + "%";
 }
 
 sampleText.onchange = function() {
@@ -483,8 +546,15 @@ bgColor.oninput = function() {
   readingPage.style.backgroundColor = this.value;
 };
 
+overlayColor.oninput = updateOverlay;
+overlayStrength.oninput = updateOverlay;
+brightness.oninput = updateFilters;
+contrast.oninput = updateFilters;
+
 updateSampleText();
 readingPage.style.width = "100%";
+updateOverlay();
+updateFilters();
 </script>
 
 </body>

@@ -61,7 +61,7 @@ body{
 }
 
 .nav{
-  max-width:1200px;
+  max-width:1400px;
   margin:0 auto;
   padding:14px 22px;
   display:flex;
@@ -95,9 +95,9 @@ body{
 }
 
 .page-wrap{
-  max-width:1200px;
+  max-width:1400px;
   margin:0 auto;
-  padding:28px 20px 50px;
+  padding:24px 20px 40px;
 }
 
 .intro-card{
@@ -105,13 +105,13 @@ body{
   border:1px solid var(--border);
   border-radius:18px;
   box-shadow:var(--shadow);
-  padding:24px;
-  margin-bottom:24px;
+  padding:22px;
+  margin-bottom:20px;
 }
 
 .intro-card h1{
-  margin:0 0 12px 0;
-  font-size:36px;
+  margin:0 0 10px 0;
+  font-size:34px;
   line-height:1.2;
 }
 
@@ -120,26 +120,51 @@ body{
   color:var(--muted);
 }
 
-.controls-panel{
+.viewer-layout{
+  display:grid;
+  grid-template-columns:380px minmax(0, 1fr);
+  gap:22px;
+  align-items:start;
+}
+
+.controls-column{
+  position:sticky;
+  top:92px;
+}
+
+.panel,
+.viewer-shell{
   background:var(--card);
   border:1px solid var(--border);
   border-radius:18px;
   box-shadow:var(--shadow);
-  padding:24px;
-  margin-bottom:24px;
+  padding:22px;
+  margin-bottom:18px;
+}
+
+.panel h2,
+.viewer-toolbar h2{
+  margin:0 0 10px 0;
+  font-size:24px;
+}
+
+.panel p{
+  margin:0;
+  color:var(--muted);
 }
 
 .controls-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
+  grid-template-columns:1fr;
+  gap:16px;
+  margin-top:16px;
 }
 
 .control-group label{
   display:block;
   margin-bottom:8px;
   font-weight:700;
-  font-size:18px;
+  font-size:17px;
 }
 
 .control-value{
@@ -157,7 +182,7 @@ textarea{
 
 select{
   padding:10px 12px;
-  font-size:17px;
+  font-size:16px;
   border:1px solid var(--border);
   border-radius:10px;
   background:#ffffff;
@@ -168,52 +193,71 @@ input[type="range"]{
 }
 
 input[type="color"]{
-  height:46px;
+  height:44px;
   border:none;
   background:transparent;
   padding:0;
   cursor:pointer;
 }
 
-.custom-text-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  padding:24px;
-  margin-bottom:24px;
-}
-
-.custom-text-card h2{
-  margin:0 0 12px 0;
-  font-size:26px;
-}
-
-.custom-text-card p{
-  margin:0 0 14px 0;
-  color:var(--muted);
+#customTextWrap{
+  margin-top:16px;
+  display:none;
 }
 
 #customText{
-  min-height:150px;
+  min-height:140px;
   padding:14px;
   border:1px solid var(--border);
   border-radius:12px;
-  font-size:17px;
+  font-size:16px;
   line-height:1.6;
   resize:vertical;
+}
+
+.helper-note{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:16px;
+}
+
+.preset-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:14px;
+}
+
+.overlay-preset{
+  border:none;
+  border-radius:999px;
+  padding:10px 14px;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  color:#222222;
+  box-shadow:0 6px 14px rgba(0,0,0,0.08);
+}
+
+.overlay-preset:hover{
+  transform:translateY(-1px);
+}
+
+.reset-preset{
+  background:#e9eefb !important;
+  color:#23376f;
 }
 
 .actions{
   margin-top:16px;
   display:flex;
-  gap:12px;
+  gap:10px;
   flex-wrap:wrap;
 }
 
 button{
-  padding:14px 18px;
-  font-size:17px;
+  padding:12px 16px;
+  font-size:16px;
   cursor:pointer;
   border:none;
   border-radius:12px;
@@ -238,11 +282,7 @@ button:hover{
 }
 
 .viewer-shell{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  padding:26px;
+  min-height:calc(100vh - 150px);
 }
 
 .viewer-toolbar{
@@ -251,24 +291,19 @@ button:hover{
   align-items:center;
   gap:16px;
   flex-wrap:wrap;
-  margin-bottom:18px;
-}
-
-.viewer-toolbar h2{
-  margin:0;
-  font-size:26px;
+  margin-bottom:16px;
 }
 
 .viewer-note{
   color:var(--muted);
-  font-size:17px;
+  font-size:16px;
 }
 
 #readingPage{
   width:100%;
-  min-height:70vh;
+  min-height:78vh;
   margin:0 auto;
-  padding:48px 56px;
+  padding:52px 60px;
   border:1px solid #d9d9d9;
   border-radius:8px;
   background:#fff8dc;
@@ -278,13 +313,54 @@ button:hover{
   box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
+.profileBox{
+  margin-top:18px;
+  padding:22px;
+  background:#eef3ff;
+  border:1px solid #d8e3ff;
+  border-radius:16px;
+  display:none;
+}
+
+.profileBox h3{
+  margin:0 0 12px 0;
+  font-size:24px;
+}
+
+.profile-summary{
+  background:#ffffff;
+  border:1px solid #d6def3;
+  border-radius:12px;
+  padding:16px;
+  line-height:1.8;
+  font-size:18px;
+}
+
 .site-footer{
-  max-width:1200px;
+  max-width:1400px;
   margin:0 auto;
-  padding:10px 22px 40px;
+  padding:6px 22px 30px;
   color:var(--muted);
   font-size:16px;
   text-align:center;
+}
+
+@media (max-width:1100px){
+  .viewer-layout{
+    grid-template-columns:1fr;
+  }
+
+  .controls-column{
+    position:static;
+  }
+
+  .viewer-shell{
+    min-height:auto;
+  }
+
+  #readingPage{
+    min-height:60vh;
+  }
 }
 
 @media (max-width:700px){
@@ -302,16 +378,16 @@ button:hover{
   }
 
   .page-wrap{
-    padding:18px 14px 36px;
+    padding:16px 14px 30px;
   }
 
   .intro-card h1{
-    font-size:30px;
+    font-size:28px;
   }
 
   #readingPage{
-    padding:28px 22px;
-    min-height:60vh;
+    padding:26px 20px;
+    min-height:50vh;
     font-size:18px;
   }
 
@@ -342,110 +418,152 @@ button:hover{
 
     <section class="intro-card">
       <h1>Full Page Reading View</h1>
-      <p>This page lets you view your choices in a more realistic full-page format, similar to how text might feel in a document, website, or reading mode. You can also try a whole-screen overlay, as well as brightness and contrast adjustments.</p>
+      <p>Choose a text on the left, adjust how it looks, and watch the preview update straight away on the right. On larger screens, the controls stay visible so you do not have to keep scrolling up and down.</p>
     </section>
 
-    <section class="controls-panel">
-      <div class="controls-grid">
+    <div class="viewer-layout">
 
-        <div class="control-group">
-          <label for="sampleText">Text sample</label>
-          <select id="sampleText">
-            <option value="general">General reading sample</option>
-            <option value="child">Children’s story</option>
-            <option value="teen">Teen reading sample</option>
-            <option value="adult">Adult information sample</option>
-            <option value="custom">My own text</option>
-          </select>
-        </div>
+      <div class="controls-column">
 
-        <div class="control-group">
-          <label for="fontSelect">Font</label>
-          <select id="fontSelect">
-            <option>Arial</option>
-            <option>Verdana</option>
-            <option>Tahoma</option>
-            <option>Trebuchet MS</option>
-            <option>Calibri</option>
-            <option>Segoe UI</option>
-            <option>Bahnschrift</option>
-            <option>Candara</option>
-            <option>Georgia</option>
-            <option>Cambria</option>
-            <option>Constantia</option>
-            <option>Palatino Linotype</option>
-            <option>Times New Roman</option>
-          </select>
-        </div>
+        <section class="panel">
+          <h2>1. Choose your text</h2>
+          <p>Select a sample text, or choose your own text and paste it below.</p>
 
-        <div class="control-group">
-          <label for="fontSize">Font size <span class="control-value" id="fontSizeValue">20px</span></label>
-          <input type="range" id="fontSize" min="16" max="36" value="20">
-        </div>
+          <div class="controls-grid">
+            <div class="control-group">
+              <label for="sampleText">Text source</label>
+              <select id="sampleText">
+                <option value="general">General reading sample</option>
+                <option value="child">Children’s story</option>
+                <option value="teen">Teen reading sample</option>
+                <option value="adult">Adult information sample</option>
+                <option value="custom">My own text</option>
+              </select>
+            </div>
+          </div>
 
-        <div class="control-group">
-          <label for="lineSpacing">Line spacing <span class="control-value" id="lineSpacingValue">1.6</span></label>
-          <input type="range" id="lineSpacing" min="1.2" max="2" step="0.1" value="1.6">
-        </div>
+          <div id="customTextWrap">
+            <div class="helper-note">Paste your own text below. The preview will update automatically.</div>
+            <textarea id="customText" placeholder="Paste your own text here..."></textarea>
+          </div>
+        </section>
 
-        <div class="control-group">
-          <label for="pageWidth">Page width <span class="control-value" id="pageWidthValue">100%</span></label>
-          <input type="range" id="pageWidth" min="60" max="100" step="5" value="100">
-        </div>
+        <section class="panel">
+          <h2>2. Adjust the view</h2>
+          <p>These controls change how the page looks, not which text is being shown.</p>
 
-        <div class="control-group">
-          <label for="textColor">Text colour</label>
-          <input type="color" id="textColor" value="#333333">
-        </div>
+          <div class="controls-grid">
 
-        <div class="control-group">
-          <label for="bgColor">Reading page colour</label>
-          <input type="color" id="bgColor" value="#fff8dc">
-        </div>
+            <div class="control-group">
+              <label for="fontSelect">Font</label>
+              <select id="fontSelect">
+                <option>Arial</option>
+                <option>Verdana</option>
+                <option>Tahoma</option>
+                <option>Trebuchet MS</option>
+                <option>Calibri</option>
+                <option>Segoe UI</option>
+                <option>Bahnschrift</option>
+                <option>Candara</option>
+                <option>Georgia</option>
+                <option>Cambria</option>
+                <option>Constantia</option>
+                <option>Palatino Linotype</option>
+                <option>Times New Roman</option>
+              </select>
+            </div>
 
-        <div class="control-group">
-          <label for="overlayColor">Whole-screen overlay colour</label>
-          <input type="color" id="overlayColor" value="#fff8dc">
-        </div>
+            <div class="control-group">
+              <label for="fontSize">Font size <span class="control-value" id="fontSizeValue">20px</span></label>
+              <input type="range" id="fontSize" min="16" max="36" value="20">
+            </div>
 
-        <div class="control-group">
-          <label for="overlayStrength">Overlay strength <span class="control-value" id="overlayStrengthValue">0%</span></label>
-          <input type="range" id="overlayStrength" min="0" max="100" value="0">
-        </div>
+            <div class="control-group">
+              <label for="lineSpacing">Line spacing <span class="control-value" id="lineSpacingValue">1.6</span></label>
+              <input type="range" id="lineSpacing" min="1.2" max="2" step="0.1" value="1.6">
+            </div>
 
-        <div class="control-group">
-          <label for="brightness">Screen brightness <span class="control-value" id="brightnessValue">100%</span></label>
-          <input type="range" id="brightness" min="60" max="140" value="100">
-        </div>
+            <div class="control-group">
+              <label for="pageWidth">Page width <span class="control-value" id="pageWidthValue">100%</span></label>
+              <input type="range" id="pageWidth" min="60" max="100" step="5" value="100">
+            </div>
 
-        <div class="control-group">
-          <label for="contrast">Screen contrast <span class="control-value" id="contrastValue">100%</span></label>
-          <input type="range" id="contrast" min="60" max="140" value="100">
-        </div>
+            <div class="control-group">
+              <label for="textColor">Text colour</label>
+              <input type="color" id="textColor" value="#333333">
+            </div>
+
+            <div class="control-group">
+              <label for="bgColor">Reading page colour</label>
+              <input type="color" id="bgColor" value="#fff8dc">
+            </div>
+
+            <div class="control-group">
+              <label for="overlayColor">Whole-screen overlay colour</label>
+              <input type="color" id="overlayColor" value="#fff8dc">
+            </div>
+
+            <div class="control-group">
+              <label for="overlayStrength">Overlay strength <span class="control-value" id="overlayStrengthValue">0%</span></label>
+              <input type="range" id="overlayStrength" min="0" max="100" value="0">
+            </div>
+
+            <div class="control-group">
+              <label for="brightness">Screen brightness <span class="control-value" id="brightnessValue">100%</span></label>
+              <input type="range" id="brightness" min="60" max="140" value="100">
+            </div>
+
+            <div class="control-group">
+              <label for="contrast">Screen contrast <span class="control-value" id="contrastValue">100%</span></label>
+              <input type="range" id="contrast" min="60" max="140" value="100">
+            </div>
+
+          </div>
+
+          <div class="preset-row">
+            <button type="button" class="overlay-preset" style="background:#fff8dc;" onclick="setOverlayPreset('#fff8dc', 25)">Cream overlay</button>
+            <button type="button" class="overlay-preset" style="background:#f0f7ff;" onclick="setOverlayPreset('#f0f7ff', 25)">Soft blue overlay</button>
+            <button type="button" class="overlay-preset" style="background:#eef7f3;" onclick="setOverlayPreset('#eef7f3', 25)">Pale green overlay</button>
+            <button type="button" class="overlay-preset" style="background:#f3f3f3;" onclick="setOverlayPreset('#f3f3f3', 20)">Light grey overlay</button>
+            <button type="button" class="overlay-preset" style="background:#fff5f5;" onclick="setOverlayPreset('#fff5f5', 20)">Soft pink overlay</button>
+            <button type="button" class="overlay-preset reset-preset" onclick="setOverlayPreset('#fff8dc', 0)">No overlay</button>
+          </div>
+
+          <div class="preset-row">
+            <button type="button" class="overlay-preset reset-preset" onclick="setScreenPreset(90, 90)">Low glare</button>
+            <button type="button" class="overlay-preset reset-preset" onclick="setScreenPreset(95, 85)">Soft contrast</button>
+            <button type="button" class="overlay-preset reset-preset" onclick="setScreenPreset(110, 100)">Brighter screen</button>
+            <button type="button" class="overlay-preset reset-preset" onclick="setScreenPreset(100, 115)">Higher contrast</button>
+            <button type="button" class="overlay-preset reset-preset" onclick="setScreenPreset(100, 100)">Reset screen</button>
+          </div>
+
+          <div class="actions">
+            <button onclick="resetViewSettings()">Reset view settings</button>
+            <button class="secondary" onclick="resetAllViewerSettings()">Reset everything</button>
+          </div>
+        </section>
 
       </div>
-    </section>
 
-    <section class="custom-text-card">
-      <h2>Use your own text</h2>
-      <p>Paste text here if you want to see how your own writing, school work, email, or reading material looks with different settings.</p>
-      <textarea id="customText" placeholder="Paste your own text here..."></textarea>
-      <div class="actions">
-        <button onclick="applyCustomText()">Use my text</button>
-        <button class="secondary" onclick="resetSample()">Go back to sample text</button>
-      </div>
-    </section>
+      <section class="viewer-shell">
+        <div class="viewer-toolbar">
+          <h2>3. Read the preview</h2>
+          <div class="viewer-note">Your text and display settings update here live</div>
+        </div>
 
-    <section class="viewer-shell">
-      <div class="viewer-toolbar">
-        <h2>Reading View</h2>
-        <div class="viewer-note">A larger, document-style view for trying out your settings</div>
-      </div>
+        <div id="readingPage">
+          Reading is a highly individual experience. The way text is presented can influence how comfortable it feels to read for extended periods. Some readers prefer wider spacing between lines, while others find certain fonts easier to follow. Background colour and contrast can also affect visual comfort. This page is designed to help you view text in a more realistic, full-page format so you can judge how it feels over time.
+        </div>
 
-      <div id="readingPage">
-        Reading is a highly individual experience. The way text is presented can influence how comfortable it feels to read for extended periods. Some readers prefer wider spacing between lines, while others find certain fonts easier to follow. Background colour and contrast can also affect visual comfort. This page is designed to help you view text in a more realistic, full-page format so you can judge how it feels over time.
-      </div>
-    </section>
+        <div class="actions">
+          <button onclick="generateViewerProfile()">Generate Reading View Profile</button>
+          <button class="secondary" onclick="copyViewerProfile()">Copy Reading View Profile</button>
+        </div>
+
+        <div id="viewerProfileBox" class="profileBox"></div>
+      </section>
+
+    </div>
 
   </div>
 
@@ -457,6 +575,9 @@ button:hover{
 <script>
 const readingPage = document.getElementById("readingPage");
 const sampleText = document.getElementById("sampleText");
+const customText = document.getElementById("customText");
+const customTextWrap = document.getElementById("customTextWrap");
+
 const fontSelect = document.getElementById("fontSelect");
 const fontSize = document.getElementById("fontSize");
 const lineSpacing = document.getElementById("lineSpacing");
@@ -467,9 +588,10 @@ const overlayColor = document.getElementById("overlayColor");
 const overlayStrength = document.getElementById("overlayStrength");
 const brightness = document.getElementById("brightness");
 const contrast = document.getElementById("contrast");
-const customText = document.getElementById("customText");
+
 const screenOverlay = document.getElementById("screenOverlay");
 const pageFilterWrap = document.getElementById("pageFilterWrap");
+const viewerProfileBox = document.getElementById("viewerProfileBox");
 
 const fontSizeValue = document.getElementById("fontSizeValue");
 const lineSpacingValue = document.getElementById("lineSpacingValue");
@@ -478,6 +600,8 @@ const overlayStrengthValue = document.getElementById("overlayStrengthValue");
 const brightnessValue = document.getElementById("brightnessValue");
 const contrastValue = document.getElementById("contrastValue");
 
+let lastViewerProfileText = "";
+
 const sampleTexts = {
   general: "Reading is a highly individual experience. The way text is presented can influence how comfortable it feels to read for extended periods. Some readers prefer wider spacing between lines, while others find certain fonts easier to follow. Background colour and contrast can also affect visual comfort. This page is designed to help you view text in a more realistic, full-page format so you can judge how it feels over time.",
   child: "Ben had a small brown dog called Pip. Every morning, Pip waited by the front door with his tail wagging fast. One sunny day, Ben clipped on Pip’s lead and they walked to the park. Pip sniffed the grass, chased a bouncing ball and splashed in a muddy puddle. On the way home, Ben laughed as Pip shook water all over his shoes. Pip looked proud of himself. By the time they got back, both of them were tired, muddy and very happy.",
@@ -485,22 +609,16 @@ const sampleTexts = {
   adult: "Comfortable reading is influenced by more than content alone. Layout, font choice, spacing, contrast and line length can all change how effortful text feels over time. A style that feels clear and calm for one reader may feel visually tiring for another. This is why flexible presentation matters. Testing small adjustments can help someone identify a format that feels easier to manage in everyday settings such as work, study or home reading."
 };
 
-function updateSampleText() {
+function toggleCustomTextArea() {
+  customTextWrap.style.display = sampleText.value === "custom" ? "block" : "none";
+}
+
+function updateDisplayedText() {
   if (sampleText.value === "custom") {
-    readingPage.textContent = customText.value || "Paste your own text above and click 'Use my text'.";
+    readingPage.textContent = customText.value.trim() || "Paste your own text above to preview it here.";
   } else {
     readingPage.textContent = sampleTexts[sampleText.value];
   }
-}
-
-function applyCustomText() {
-  sampleText.value = "custom";
-  readingPage.textContent = customText.value || "Paste your own text above and click 'Use my text'.";
-}
-
-function resetSample() {
-  sampleText.value = "general";
-  updateSampleText();
 }
 
 function updateFilters() {
@@ -515,46 +633,158 @@ function updateOverlay() {
   overlayStrengthValue.textContent = overlayStrength.value + "%";
 }
 
-sampleText.onchange = function() {
-  updateSampleText();
-};
+function updateViewSettings() {
+  readingPage.style.fontFamily = fontSelect.value;
+  readingPage.style.fontSize = fontSize.value + "px";
+  readingPage.style.lineHeight = lineSpacing.value;
+  readingPage.style.width = pageWidth.value + "%";
+  readingPage.style.color = textColor.value;
+  readingPage.style.backgroundColor = bgColor.value;
 
-fontSelect.onchange = function() {
-  readingPage.style.fontFamily = this.value;
-};
+  fontSizeValue.textContent = fontSize.value + "px";
+  lineSpacingValue.textContent = lineSpacing.value;
+  pageWidthValue.textContent = pageWidth.value + "%";
 
-fontSize.oninput = function() {
-  readingPage.style.fontSize = this.value + "px";
-  fontSizeValue.textContent = this.value + "px";
-};
+  updateOverlay();
+  updateFilters();
+}
 
-lineSpacing.oninput = function() {
-  readingPage.style.lineHeight = this.value;
-  lineSpacingValue.textContent = this.value;
-};
+function setOverlayPreset(colour, strength) {
+  overlayColor.value = colour;
+  overlayStrength.value = strength;
+  updateOverlay();
+}
 
-pageWidth.oninput = function() {
-  readingPage.style.width = this.value + "%";
-  pageWidthValue.textContent = this.value + "%";
-};
+function setScreenPreset(brightnessValueIn, contrastValueIn) {
+  brightness.value = brightnessValueIn;
+  contrast.value = contrastValueIn;
+  updateFilters();
+}
 
-textColor.oninput = function() {
-  readingPage.style.color = this.value;
-};
+function resetViewSettings() {
+  fontSelect.value = "Arial";
+  fontSize.value = 20;
+  lineSpacing.value = 1.6;
+  pageWidth.value = 100;
+  textColor.value = "#333333";
+  bgColor.value = "#fff8dc";
+  overlayColor.value = "#fff8dc";
+  overlayStrength.value = 0;
+  brightness.value = 100;
+  contrast.value = 100;
+  updateViewSettings();
+}
 
-bgColor.oninput = function() {
-  readingPage.style.backgroundColor = this.value;
-};
+function resetAllViewerSettings() {
+  sampleText.value = "general";
+  customText.value = "";
+  toggleCustomTextArea();
+  updateDisplayedText();
+  resetViewSettings();
+}
 
-overlayColor.oninput = updateOverlay;
-overlayStrength.oninput = updateOverlay;
-brightness.oninput = updateFilters;
-contrast.oninput = updateFilters;
+function getViewerProfileText() {
+  const textSourceLabel = sampleText.options[sampleText.selectedIndex].text;
+  const customNote = sampleText.value === "custom" ? "Custom text entered by user" : "Preset sample text";
+  return (
+    "Reading View Profile\n\n" +
+    "Text source: " + textSourceLabel + "\n" +
+    "Text type: " + customNote + "\n" +
+    "Font: " + fontSelect.value + "\n" +
+    "Font size: " + fontSize.value + "px\n" +
+    "Line spacing: " + lineSpacing.value + "\n" +
+    "Page width: " + pageWidth.value + "%\n" +
+    "Text colour: " + textColor.value + "\n" +
+    "Reading page colour: " + bgColor.value + "\n" +
+    "Whole-screen overlay colour: " + overlayColor.value + "\n" +
+    "Overlay strength: " + overlayStrength.value + "%\n" +
+    "Screen brightness: " + brightness.value + "%\n" +
+    "Screen contrast: " + contrast.value + "%\n\n" +
+    "These settings can be used as a guide for recreating a similar reading environment in Word, Google Docs, browser reading modes, or device accessibility settings."
+  );
+}
 
-updateSampleText();
-readingPage.style.width = "100%";
-updateOverlay();
-updateFilters();
+function generateViewerProfile() {
+  lastViewerProfileText = getViewerProfileText();
+  viewerProfileBox.style.display = "block";
+  viewerProfileBox.innerHTML =
+    "<h3>Reading View Profile</h3>" +
+    "<div class='profile-summary'>" +
+    "<strong>Text source:</strong> " + sampleText.options[sampleText.selectedIndex].text + "<br>" +
+    "<strong>Font:</strong> " + fontSelect.value + "<br>" +
+    "<strong>Font size:</strong> " + fontSize.value + "px<br>" +
+    "<strong>Line spacing:</strong> " + lineSpacing.value + "<br>" +
+    "<strong>Page width:</strong> " + pageWidth.value + "%<br>" +
+    "<strong>Text colour:</strong> " + textColor.value + "<br>" +
+    "<strong>Reading page colour:</strong> " + bgColor.value + "<br>" +
+    "<strong>Whole-screen overlay colour:</strong> " + overlayColor.value + "<br>" +
+    "<strong>Overlay strength:</strong> " + overlayStrength.value + "%<br>" +
+    "<strong>Screen brightness:</strong> " + brightness.value + "%<br>" +
+    "<strong>Screen contrast:</strong> " + contrast.value + "%" +
+    "</div>";
+}
+
+async function copyViewerProfile() {
+  if (!lastViewerProfileText) {
+    lastViewerProfileText = getViewerProfileText();
+  }
+  try {
+    await navigator.clipboard.writeText(lastViewerProfileText);
+    alert("Your Reading View profile has been copied.");
+  } catch (err) {
+    alert("Copy did not work in this browser. Please generate the profile and copy it manually.");
+  }
+}
+
+function loadSettingsFromTool() {
+  const saved = localStorage.getItem("readingComfortToolSettings");
+  if (!saved) return;
+
+  try {
+    const settings = JSON.parse(saved);
+
+    if (settings.font) fontSelect.value = settings.font;
+    if (settings.fontSize) fontSize.value = settings.fontSize;
+    if (settings.lineSpacing) lineSpacing.value = settings.lineSpacing;
+    if (settings.lineWidth) {
+      const mappedWidth = Math.max(60, Math.min(100, Math.round((settings.lineWidth / 960) * 100)));
+      pageWidth.value = mappedWidth;
+    }
+    if (settings.textColor) textColor.value = settings.textColor;
+    if (settings.bgColor) bgColor.value = settings.bgColor;
+    if (settings.sampleText) sampleText.value = settings.sampleText;
+    if (settings.customText) customText.value = settings.customText;
+  } catch (e) {
+    console.log("Could not load saved tool settings.");
+  }
+}
+
+sampleText.addEventListener("change", () => {
+  toggleCustomTextArea();
+  updateDisplayedText();
+});
+
+customText.addEventListener("input", () => {
+  if (sampleText.value === "custom") {
+    updateDisplayedText();
+  }
+});
+
+fontSelect.addEventListener("change", updateViewSettings);
+fontSize.addEventListener("input", updateViewSettings);
+lineSpacing.addEventListener("input", updateViewSettings);
+pageWidth.addEventListener("input", updateViewSettings);
+textColor.addEventListener("input", updateViewSettings);
+bgColor.addEventListener("input", updateViewSettings);
+overlayColor.addEventListener("input", updateOverlay);
+overlayStrength.addEventListener("input", updateOverlay);
+brightness.addEventListener("input", updateFilters);
+contrast.addEventListener("input", updateFilters);
+
+loadSettingsFromTool();
+toggleCustomTextArea();
+updateDisplayedText();
+updateViewSettings();
 </script>
 
 </body>

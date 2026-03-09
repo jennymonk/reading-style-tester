@@ -1,257 +1,267 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Reading Comfort Lab</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reading Comfort Lab</title>
+  <style>
+    :root{
+      --bg:#f5f6f8;
+      --card:#ffffff;
+      --text:#222222;
+      --muted:#4b5563;
+      --accent:#3657d6;
+      --accent2:#eef3ff;
+      --soft:#f8fafc;
+      --border:#d8dee8;
+      --shadow:0 12px 30px rgba(0,0,0,0.08);
+      --max:920px;
+    }
 
-<style>
+    *{box-sizing:border-box;}
 
-body{
-font-family:Arial;
-background:#f3f4f6;
-margin:0;
-padding:40px;
-}
+    body{
+      margin:0;
+      font-family:Arial, Verdana, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.8;
+      font-size:20px;
+    }
 
-.container{
-max-width:900px;
-margin:auto;
-background:white;
-padding:40px;
-border-radius:10px;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:40px 22px 60px;
+    }
 
-h1{
-margin-top:0;
-font-size:34px;
-}
+    .hero{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:34px 28px;
+      margin-bottom:26px;
+    }
 
-.intro{
-line-height:1.7;
-color:#444;
-margin-bottom:25px;
-}
+    h1{
+      font-size:44px;
+      line-height:1.15;
+      margin:0 0 18px;
+      letter-spacing:0.2px;
+    }
 
-.about{
-background:#f8f9fb;
-padding:18px;
-border-radius:6px;
-margin-bottom:30px;
-font-size:15px;
-}
+    h2{
+      font-size:30px;
+      line-height:1.25;
+      margin:0 0 14px;
+    }
 
-.preset-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-gap:15px;
-margin-bottom:30px;
-}
+    p{
+      margin:0 0 18px;
+    }
 
-.preset{
-padding:22px;
-border-radius:8px;
-cursor:pointer;
-font-weight:bold;
-text-align:center;
-transition:0.2s;
-border:2px solid transparent;
-}
+    .bio{
+      background:linear-gradient(135deg,#f7f8ff 0%, #eef3ff 100%);
+      border:1px solid #d9e3ff;
+      border-radius:18px;
+      padding:24px;
+      margin-bottom:24px;
+    }
 
-.preset:hover{
-transform:scale(1.05);
-border-color:#888;
-}
+    .section{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:26px;
+      margin-bottom:22px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.04);
+    }
 
-.controls label{
-display:block;
-margin-top:15px;
-font-weight:bold;
-}
+    .note{
+      background:#fff8e8;
+      border:1px solid #ead9a8;
+    }
 
-#readingText{
-margin-top:30px;
-padding:25px;
-border-radius:6px;
-border:1px solid #ddd;
-font-size:18px;
-line-height:1.5;
-background:#fff8dc;
-color:#333;
-}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:14px;
+      margin-top:10px;
+    }
 
-.profileBox{
-margin-top:25px;
-padding:18px;
-background:#eef3ff;
-border-radius:6px;
-display:none;
-}
+    .mini-card{
+      background:var(--soft);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:16px 18px;
+      font-size:19px;
+      line-height:1.65;
+    }
 
-button{
-margin-top:15px;
-padding:10px 16px;
-font-size:14px;
-cursor:pointer;
-}
+    .links{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:14px;
+      margin-top:10px;
+    }
 
-</style>
+    .link-card{
+      display:block;
+      text-decoration:none;
+      color:var(--text);
+      background:#fbfcfe;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:18px;
+      transition:transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+    }
+
+    .link-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 20px rgba(0,0,0,0.06);
+      border-color:#b9c7df;
+    }
+
+    .link-card strong{
+      display:block;
+      font-size:20px;
+      margin-bottom:6px;
+    }
+
+    .link-card span{
+      display:block;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.6;
+    }
+
+    .cta{
+      text-align:center;
+      padding:34px 22px;
+      background:linear-gradient(135deg,#f7f9ff 0%, #eef3ff 100%);
+      border:1px solid #d9e3ff;
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      margin-top:24px;
+    }
+
+    .cta p{
+      max-width:700px;
+      margin:0 auto 20px;
+    }
+
+    .button{
+      display:inline-block;
+      text-decoration:none;
+      background:var(--accent);
+      color:#ffffff;
+      font-weight:700;
+      font-size:22px;
+      padding:16px 28px;
+      border-radius:999px;
+      box-shadow:0 10px 22px rgba(54,87,214,0.25);
+      transition:transform 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .button:hover{
+      transform:translateY(-2px);
+      box-shadow:0 14px 26px rgba(54,87,214,0.28);
+    }
+
+    .small{
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.7;
+    }
+
+    @media (max-width:700px){
+      body{font-size:18px;}
+      h1{font-size:34px;}
+      h2{font-size:26px;}
+      .button{font-size:20px; width:100%; max-width:360px;}
+    }
+  </style>
 </head>
-
 <body>
+  <div class="wrap">
 
-<div class="container">
+    <section class="hero">
+      <div class="bio">
+        <h1>Reading Comfort Lab</h1>
+        <p><strong>Hello, I’m Jenny Monkhouse.</strong> I created Reading Comfort Lab because I experience visual strain myself and found it surprisingly hard to locate one straightforward place where I could test different fonts, spacing and background colours together.</p>
+        <p>There is a lot of helpful information online about dyslexia, visual stress, accessibility and readable design. What I struggled to find was a practical one-stop space where I could simply try different combinations and decide what felt best for me. This project grew from that gap.</p>
+        <p>It is designed as a calm, user-led tool to help people explore reading comfort in a simple and practical way.</p>
+      </div>
 
-<h1>Reading Comfort Lab</h1>
+      <p>Reading comfort is about how easy, tiring, clear or visually manageable text feels to read. Small changes in presentation can make a noticeable difference. A font that feels fine for one person may feel crowded or tiring for someone else. The same is true for spacing, contrast and background colour.</p>
+      <p>This site does not assume there is one perfect reading style. It is here to help you explore what works best for you.</p>
+    </section>
 
-<p class="intro">
-Reading comfort varies from person to person. Font choice, spacing, colour contrast and layout can all influence how easy text feels to read over time. This tool allows you to experiment with different combinations to discover what works best for you.
-</p>
+    <section class="section">
+      <h2>What can affect reading comfort?</h2>
+      <p>Reading comfort can be shaped by lots of different things. Some are to do with the text itself, while others are about the person reading it or the environment around them.</p>
 
-<div class="about">
-<strong>Why this tool exists</strong><br><br>
-This project was created to explore how small changes in typography and layout influence reading comfort. Many accessibility guides recommend flexible presentation, yet people rarely have an easy way to test these preferences themselves. Reading Comfort Lab provides a simple way to experiment and identify a reading style that feels calm and comfortable.
-</div>
+      <div class="grid">
+        <div class="mini-card"><strong>Typography and layout</strong><br>Font style, font size, line spacing, paragraph spacing and line length can all change how easy text feels to track.</div>
+        <div class="mini-card"><strong>Colour and contrast</strong><br>Some people prefer softer contrast or a tinted background rather than dark text on a bright white screen.</div>
+        <div class="mini-card"><strong>Light and screen conditions</strong><br>Glare, brightness, reflections and fatigue can make reading feel more effortful.</div>
+        <div class="mini-card"><strong>Individual differences</strong><br>Dyslexia, visual stress, headaches, migraine, concentration, tiredness and personal preference can all shape what feels comfortable.</div>
+      </div>
+    </section>
 
-<div class="preset-grid">
+    <section class="section note">
+      <h2>This is not a diagnostic tool</h2>
+      <p>Reading Comfort Lab is not designed to diagnose dyslexia, visual stress, Irlen syndrome, colour vision differences, migraine-related sensitivity, or any other condition. It is simply a practical tool for exploring combinations of font, spacing and colour.</p>
+      <p>The British Dyslexia Association explains that dyslexia is a specific learning difficulty, while visual difficulties may also be present and should be considered separately. The College of Optometrists advises that visual problems should be explored through a thorough eye examination and that tinted lenses should not be presented as treating specific learning difficulties. :contentReference[oaicite:1]{index=1}</p>
+      <p>If you regularly experience blurred text, moving words, headaches, glare or marked reading fatigue, it may be worth seeking professional advice as well as experimenting with presentation settings. Moorfields also offers practical suggestions such as reducing glare and using well-spaced text. :contentReference[oaicite:2]{index=2}</p>
+    </section>
 
-<div class="preset" style="background:#fff8dc"
-onclick="applyPreset('Arial',18,1.5,'#333','#fff8dc')">
-Classic Calm
-</div>
+    <section class="section">
+      <h2>Further help and guidance</h2>
+      <p>If you want more information beyond the tool, these organisations and resources are a good place to start.</p>
 
-<div class="preset" style="background:#f0f7ff"
-onclick="applyPreset('Verdana',18,1.6,'#222','#f0f7ff')">
-Wide & Clear
-</div>
+      <div class="links">
+        <a class="link-card" href="https://www.bdadyslexia.org.uk/dyslexia/about-dyslexia/what-is-dyslexia" target="_blank" rel="noopener noreferrer">
+          <strong>British Dyslexia Association: What is dyslexia?</strong>
+          <span>Clear overview of dyslexia as a specific learning difficulty.</span>
+        </a>
 
-<div class="preset" style="background:#f3f3f3"
-onclick="applyPreset('Segoe UI',18,1.5,'#333','#f3f3f3')">
-Soft Contrast
-</div>
+        <a class="link-card" href="https://www.bdadyslexia.org.uk/dyslexia/neurodiversity-and-co-occurring-differences/visual-difficulties" target="_blank" rel="noopener noreferrer">
+          <strong>British Dyslexia Association: Visual difficulties</strong>
+          <span>Information on symptoms such as blurring, moving text and light sensitivity.</span>
+        </a>
 
-<div class="preset" style="background:#fff5f5"
-onclick="applyPreset('Georgia',18,1.6,'#222','#fff5f5')">
-Book Style
-</div>
+        <a class="link-card" href="https://www.nhs.uk/conditions/dyslexia/" target="_blank" rel="noopener noreferrer">
+          <strong>NHS: Dyslexia</strong>
+          <span>General NHS overview, including symptoms, diagnosis and support.</span>
+        </a>
 
-<div class="preset" style="background:#eef7f3"
-onclick="applyPreset('Tahoma',18,1.5,'#222','#eef7f3')">
-Screen Easy
-</div>
+        <a class="link-card" href="https://www.college-optometrists.org/clinical-guidance/guidance/knowledge%2C-skills-and-performance/examining-patients-with-specific-learning-difficul" target="_blank" rel="noopener noreferrer">
+          <strong>College of Optometrists: Visual assessment guidance</strong>
+          <span>Guidance on exploring visual problems through proper eye examination.</span>
+        </a>
 
-</div>
+        <a class="link-card" href="https://www.college-optometrists.org/clinical-guidance/guidance/knowledge%2C-skills-and-performance/examining-patients-with-specific-learning-difficul/tinted-lenses" target="_blank" rel="noopener noreferrer">
+          <strong>College of Optometrists: Tinted lenses and coloured overlays</strong>
+          <span>Balanced guidance on visual stress, tinted lenses and evidence.</span>
+        </a>
 
-<div class="controls">
+        <a class="link-card" href="https://www.moorfields.nhs.uk/children-and-young-people/paediatric-low-vision-assessment/visual-stress" target="_blank" rel="noopener noreferrer">
+          <strong>Moorfields Eye Hospital: Visual stress</strong>
+          <span>Practical ideas for reducing visual fatigue, glare and strain.</span>
+        </a>
+      </div>
 
-<label>Font</label>
+      <p class="small">These links are here for further guidance. They do not replace professional assessment where that is needed. :contentReference[oaicite:3]{index=3}</p>
+    </section>
 
-<select id="fontSelect">
-<option>Arial</option>
-<option>Verdana</option>
-<option>Tahoma</option>
-<option>Trebuchet MS</option>
-<option>Calibri</option>
-<option>Segoe UI</option>
-<option>Bahnschrift</option>
-<option>Candara</option>
-<option>Georgia</option>
-<option>Cambria</option>
-<option>Constantia</option>
-<option>Palatino Linotype</option>
-<option>Times New Roman</option>
-</select>
+    <section class="cta">
+      <h2>Try the tool</h2>
+      <p>Use the interactive tester to explore different combinations of font, spacing and colour and see which reading style feels most comfortable for you.</p>
+      <a class="button" href="tool.html">Open the Reading Comfort Tool</a>
+    </section>
 
-<label>Font Size</label>
-<input type="range" id="fontSize" min="16" max="32" value="18">
-
-<label>Line Spacing</label>
-<input type="range" id="lineSpacing" min="1.2" max="2" step="0.1" value="1.5">
-
-<label>Text Colour</label>
-<input type="color" id="textColor" value="#333333">
-
-<label>Background Colour</label>
-<input type="color" id="bgColor" value="#fff8dc">
-
-</div>
-
-<div id="readingText">
-
-Reading is a highly individual experience. The way text is presented can influence how comfortable it feels to read for long periods. Some readers prefer wider spacing between lines, while others find particular fonts easier to follow. Background colour and contrast can also affect visual comfort. This small tool allows you to experiment with different settings and discover what combination works best for you.
-
-</div>
-
-<button onclick="generateProfile()">Generate my reading profile</button>
-
-<div id="profileBox" class="profileBox"></div>
-
-</div>
-
-<script>
-
-const text=document.getElementById("readingText")
-
-document.getElementById("fontSelect").onchange=function(){
-text.style.fontFamily=this.value
-}
-
-document.getElementById("fontSize").oninput=function(){
-text.style.fontSize=this.value+"px"
-}
-
-document.getElementById("lineSpacing").oninput=function(){
-text.style.lineHeight=this.value
-}
-
-document.getElementById("textColor").oninput=function(){
-text.style.color=this.value
-}
-
-document.getElementById("bgColor").oninput=function(){
-text.style.backgroundColor=this.value
-}
-
-function applyPreset(font,size,line,color,bg){
-
-text.style.fontFamily=font
-text.style.fontSize=size+"px"
-text.style.lineHeight=line
-text.style.color=color
-text.style.backgroundColor=bg
-
-document.getElementById("fontSelect").value=font
-document.getElementById("fontSize").value=size
-document.getElementById("lineSpacing").value=line
-document.getElementById("textColor").value=color
-document.getElementById("bgColor").value=bg
-
-}
-
-function generateProfile(){
-
-let font=document.getElementById("fontSelect").value
-let size=document.getElementById("fontSize").value
-let spacing=document.getElementById("lineSpacing").value
-let color=document.getElementById("textColor").value
-let bg=document.getElementById("bgColor").value
-
-let box=document.getElementById("profileBox")
-
-box.style.display="block"
-
-box.innerHTML=
-"<strong>Your Reading Profile</strong><br><br>"+
-"Font: "+font+"<br>"+
-"Font size: "+size+"px<br>"+
-"Line spacing: "+spacing+"<br>"+
-"Text colour: "+color+"<br>"+
-"Background colour: "+bg+"<br><br>"+
-"You can use these settings in tools like Microsoft Word, Google Docs, or browser reader modes."
-
-}
-
-</script>
-
+  </div>
 </body>
 </html>

@@ -6,16 +6,20 @@
   <title>Reading Comfort Lab</title>
   <style>
     :root{
-      --bg:#f5f6f8;
+      --bg:#dff2ff;
       --card:#ffffff;
-      --text:#222222;
+      --text:#1f2937;
       --muted:#4b5563;
       --accent:#3657d6;
-      --accent2:#eef3ff;
-      --soft:#f8fafc;
-      --border:#d8dee8;
+      --soft-blue:#eef7ff;
+      --soft-lilac:#f4efff;
+      --soft-yellow:#fff8e8;
+      --soft-mint:#eef8f1;
+      --soft-peach:#fff1ea;
+      --soft-pink:#fff3f8;
+      --border:#d7e2ee;
       --shadow:0 12px 30px rgba(0,0,0,0.08);
-      --max:920px;
+      --max:980px;
     }
 
     *{
@@ -39,9 +43,9 @@
       position:sticky;
       top:0;
       z-index:1000;
-      background:rgba(245,246,248,0.94);
+      background:rgba(223,242,255,0.92);
       backdrop-filter:blur(10px);
-      border-bottom:1px solid var(--border);
+      border-bottom:1px solid #c7dceb;
     }
 
     .nav{
@@ -87,15 +91,15 @@
     .hero{
       background:var(--card);
       border:1px solid var(--border);
-      border-radius:22px;
+      border-radius:24px;
       box-shadow:var(--shadow);
       padding:34px 28px;
       margin-bottom:26px;
     }
 
     h1{
-      font-size:44px;
-      line-height:1.15;
+      font-size:46px;
+      line-height:1.1;
       margin:0 0 18px;
       letter-spacing:0.2px;
     }
@@ -110,12 +114,20 @@
       margin:0 0 18px;
     }
 
-    .bio{
-      background:linear-gradient(135deg,#f7f8ff 0%, #eef3ff 100%);
-      border:1px solid #d9e3ff;
-      border-radius:18px;
-      padding:24px;
+    .intro-box{
+      background:linear-gradient(135deg,#ffffff 0%, #f7fbff 100%);
+      border:1px solid #d7e6f2;
+      border-radius:20px;
+      padding:26px;
       margin-bottom:24px;
+    }
+
+    .bio-box{
+      background:linear-gradient(135deg,#f3ecff 0%, #efe5ff 100%);
+      border:1px solid #decdf8;
+      border-radius:20px;
+      padding:24px;
+      margin-bottom:22px;
     }
 
     .hero-actions{
@@ -123,88 +135,6 @@
       gap:14px;
       flex-wrap:wrap;
       margin-top:18px;
-    }
-
-    .section{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:26px;
-      margin-bottom:22px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.04);
-    }
-
-    .note{
-      background:#fff8e8;
-      border:1px solid #ead9a8;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:14px;
-      margin-top:10px;
-    }
-
-    .mini-card{
-      background:var(--soft);
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:16px 18px;
-      font-size:19px;
-      line-height:1.65;
-    }
-
-    .links{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:14px;
-      margin-top:10px;
-    }
-
-    .link-card{
-      display:block;
-      text-decoration:none;
-      color:var(--text);
-      background:#fbfcfe;
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:18px;
-      transition:transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
-    }
-
-    .link-card:hover{
-      transform:translateY(-2px);
-      box-shadow:0 10px 20px rgba(0,0,0,0.06);
-      border-color:#b9c7df;
-    }
-
-    .link-card strong{
-      display:block;
-      font-size:20px;
-      margin-bottom:6px;
-    }
-
-    .link-card span{
-      display:block;
-      color:var(--muted);
-      font-size:18px;
-      line-height:1.6;
-    }
-
-    .cta{
-      text-align:center;
-      padding:34px 22px;
-      background:linear-gradient(135deg,#f7f9ff 0%, #eef3ff 100%);
-      border:1px solid #d9e3ff;
-      border-radius:20px;
-      box-shadow:var(--shadow);
-      margin-top:24px;
-    }
-
-    .cta p{
-      max-width:700px;
-      margin:0 auto 20px;
     }
 
     .button{
@@ -239,7 +169,7 @@
     .scroll-indicator{
       text-align:center;
       margin-top:28px;
-      color:#6b7280;
+      color:#5f6f82;
       font-size:18px;
       animation:floatArrow 1.8s ease-in-out infinite;
     }
@@ -248,6 +178,129 @@
       0%{transform:translateY(0);}
       50%{transform:translateY(6px);}
       100%{transform:translateY(0);}
+    }
+
+    .section{
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:28px;
+      margin-bottom:22px;
+      box-shadow:0 8px 22px rgba(0,0,0,0.05);
+    }
+
+    .section-diagnostic{
+      background:var(--soft-yellow);
+      border-color:#ead9a8;
+    }
+
+    .section-affects{
+      background:var(--soft-mint);
+      border-color:#cfe8d8;
+    }
+
+    .section-help{
+      background:var(--soft-peach);
+      border-color:#efd8ca;
+    }
+
+    .section-tiles{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      gap:16px;
+      margin-top:16px;
+    }
+
+    .mini-card{
+      min-height:205px;
+      border-radius:18px;
+      padding:18px 18px 16px;
+      font-size:18px;
+      line-height:1.65;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 8px 18px rgba(0,0,0,0.05);
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+    }
+
+    .mini-card .icon{
+      font-size:28px;
+      margin-bottom:10px;
+      line-height:1;
+    }
+
+    .mini-card strong{
+      display:block;
+      font-size:20px;
+      margin-bottom:8px;
+    }
+
+    .tile-1{
+      background:#eaf4ff;
+    }
+
+    .tile-2{
+      background:#fff5da;
+    }
+
+    .tile-3{
+      background:#f1ebff;
+    }
+
+    .tile-4{
+      background:#ffeef3;
+    }
+
+    .links{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:14px;
+      margin-top:10px;
+    }
+
+    .link-card{
+      display:block;
+      text-decoration:none;
+      color:var(--text);
+      background:#fffaf7;
+      border:1px solid #ecd7ca;
+      border-radius:16px;
+      padding:18px;
+      transition:transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+    }
+
+    .link-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 20px rgba(0,0,0,0.06);
+      border-color:#d8bdaa;
+    }
+
+    .link-card strong{
+      display:block;
+      font-size:20px;
+      margin-bottom:6px;
+    }
+
+    .link-card span{
+      display:block;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.6;
+    }
+
+    .cta{
+      text-align:center;
+      padding:34px 22px;
+      background:linear-gradient(135deg,#eef6ff 0%, #e4f0ff 100%);
+      border:1px solid #cdddf1;
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      margin-top:24px;
+    }
+
+    .cta p{
+      max-width:700px;
+      margin:0 auto 20px;
     }
 
     .small{
@@ -293,6 +346,10 @@
       .nav-links{
         gap:14px;
       }
+
+      .mini-card{
+        min-height:auto;
+      }
     }
   </style>
 </head>
@@ -305,6 +362,7 @@
         <a href="index.html">Home</a>
         <a href="tool.html">Tool</a>
         <a href="viewer.html">Reading View</a>
+        <a href="#about">About</a>
         <a href="#help">Further help</a>
       </div>
     </nav>
@@ -313,45 +371,67 @@
   <div class="wrap">
 
     <section class="hero" id="about">
-      <div class="bio">
+      <div class="intro-box">
         <h1>Reading Comfort Lab</h1>
+        <p>Reading comfort is about how easy, tiring, clear or visually manageable text feels to read. Small changes in presentation can make a noticeable difference. A font that feels fine for one person may feel crowded or tiring for someone else. The same is true for spacing, contrast and background colour.</p>
+        <p>This site does not assume there is one perfect reading style. It is here to help you explore what works best for you.</p>
+      </div>
+
+      <div class="bio-box">
         <p><strong>Hello, I’m Jenny Monkhouse.</strong> I created Reading Comfort Lab because I experience visual strain myself and found it surprisingly hard to locate one straightforward place where I could test different fonts, spacing and background colours together.</p>
         <p>There is a lot of helpful information online about dyslexia, visual stress, accessibility and readable design. What I struggled to find was a practical one-stop space where I could simply try different combinations and decide what felt best for me. This project grew from that gap.</p>
         <p>It is designed as a calm, user-led tool to help people explore reading comfort in a simple and practical way.</p>
+      </div>
 
-        <div class="hero-actions">
-  <a href="tool.html" class="button">Try the Reading Comfort Tool</a>
-  <a href="viewer.html" class="button secondary">Open Full Page Reading View</a>
-  <a href="#help" class="button secondary">Find further help</a>
-</div>
-
-      <p>Reading comfort is about how easy, tiring, clear or visually manageable text feels to read. Small changes in presentation can make a noticeable difference. A font that feels fine for one person may feel crowded or tiring for someone else. The same is true for spacing, contrast and background colour.</p>
-      <p>This site does not assume there is one perfect reading style. It is here to help you explore what works best for you.</p>
+      <div class="hero-actions">
+        <a href="tool.html" class="button">Try the Reading Comfort Tool</a>
+        <a href="viewer.html" class="button secondary">Open Full Page Reading View</a>
+        <a href="#help" class="button secondary">Find further help</a>
+      </div>
 
       <div class="scroll-indicator">
         ↓ Scroll to learn more ↓
       </div>
     </section>
 
-    <section class="section">
-      <h2>What can affect reading comfort?</h2>
-      <p>Reading comfort can be shaped by lots of different things. Some are to do with the text itself, while others are about the person reading it or the environment around them.</p>
-
-      <div class="grid">
-        <div class="mini-card"><strong>Typography and layout</strong><br>Font style, font size, line spacing, paragraph spacing and line length can all change how easy text feels to track.</div>
-        <div class="mini-card"><strong>Colour and contrast</strong><br>Some people prefer softer contrast or a tinted background rather than dark text on a bright white screen.</div>
-        <div class="mini-card"><strong>Light and screen conditions</strong><br>Glare, brightness, reflections and fatigue can make reading feel more effortful.</div>
-        <div class="mini-card"><strong>Individual differences</strong><br>Dyslexia, visual stress, headaches, migraine, concentration, tiredness and personal preference can all shape what feels comfortable.</div>
-      </div>
-    </section>
-
-    <section class="section note">
+    <section class="section section-diagnostic">
       <h2>This is not a diagnostic tool</h2>
       <p>Reading Comfort Lab is not designed to diagnose dyslexia, visual stress, Irlen syndrome, colour vision differences, migraine-related sensitivity, or any other condition. It is simply a practical tool for exploring combinations of font, spacing and colour.</p>
       <p>If you regularly experience blurred text, moving words, headaches, glare or marked reading fatigue, it may be worth seeking professional advice as well as experimenting with presentation settings.</p>
     </section>
 
-    <section class="section" id="help">
+    <section class="section section-affects">
+      <h2>What can affect reading comfort?</h2>
+      <p>Reading comfort can be shaped by lots of different things. Some are to do with the text itself, while others are about the person reading it or the environment around them.</p>
+
+      <div class="section-tiles">
+        <div class="mini-card tile-1">
+          <div class="icon">✍️</div>
+          <strong>Typography and layout</strong>
+          Font style, font size, line spacing, paragraph spacing and line length can all change how easy text feels to track.
+        </div>
+
+        <div class="mini-card tile-2">
+          <div class="icon">🎨</div>
+          <strong>Colour and contrast</strong>
+          Some people prefer softer contrast or a tinted background rather than dark text on a bright white screen.
+        </div>
+
+        <div class="mini-card tile-3">
+          <div class="icon">💡</div>
+          <strong>Light and screen conditions</strong>
+          Glare, brightness, reflections and fatigue can make reading feel more effortful.
+        </div>
+
+        <div class="mini-card tile-4">
+          <div class="icon">🧠</div>
+          <strong>Individual differences</strong>
+          Dyslexia, visual stress, headaches, migraine, concentration, tiredness and personal preference can all shape what feels comfortable.
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-help" id="help">
       <h2>Further help and guidance</h2>
       <p>If you want more information beyond the tool, these organisations and resources are a good place to start.</p>
 
